@@ -9,7 +9,7 @@ const router = new express.Router();
 
 
 router.get("/scrape", function (req, res) { 
-    axios.get("http://www.echojs.com/").then(function (response) {
+    axios.get("").then(function (response) {
         // Then, we load that into cheerio and save it to $ for a shorthand selector
         var $ = cheerio.load(response.data);
 
