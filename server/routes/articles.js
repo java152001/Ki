@@ -25,12 +25,14 @@ router.get("/scrape", function (req, res) {
             result.link = $(this)
                 .children("a")
                 .attr("href");
-
+            // 
             // Create a new Article using the `result` object built from scraping
             dbArticle.create(result)
                 .then(function (dbArticle) {
                     // View the added result in the console
                     console.log(dbArticle);
+                    // [ result.comments + article: dbArticle._id]
+                    // db.Comment.create()
                 })
                 .catch(function (err) {
                     // If an error occurred, send it to the client
