@@ -14588,7 +14588,7 @@ var PrivateRoute = function PrivateRoute(_ref) {
       rest = _objectWithoutProperties(_ref, ['component']);
 
   return _react2.default.createElement(_reactRouterDom.Route, _extends({}, rest, { render: function render(props) {
-      return _Auth2.default.isUserAuthenticated() ? _react2.default.createElement(Component, props) : _react2.default.createElement(_reactRouterDom.Redirect, { to: {
+      return _Auth2.default.isUserAuthenticated() ? _react2.default.createElement(Component, _extends({}, props, rest)) : _react2.default.createElement(_reactRouterDom.Redirect, { to: {
           pathname: '/',
           state: { from: props.location }
         } });
@@ -15106,6 +15106,18 @@ var SignUpForm = function SignUpForm(_ref) {
       ),
       _react2.default.createElement(
         'div',
+        { className: 'field-line' },
+        _react2.default.createElement(_TextField2.default, {
+          floatingLabelText: 'Phone',
+          type: 'text',
+          name: 'phone',
+          onChange: onChange,
+          errorText: errors.phone,
+          value: user.phone
+        })
+      ),
+      _react2.default.createElement(
+        'div',
         { className: 'button-line' },
         _react2.default.createElement(_RaisedButton2.default, { type: 'submit', label: 'Create New Account', primary: true })
       ),
@@ -15205,6 +15217,7 @@ var DashboardPage = function (_React$Component) {
             secretData: xhr.response.message,
             user: xhr.response.user
           });
+          console.log(_this2.state.user);
         }
       });
       xhr.send();
@@ -15522,7 +15535,8 @@ var SignUpPage = function (_React$Component) {
       user: {
         email: '',
         name: '',
-        password: ''
+        password: '',
+        phone: ''
       }
     };
 
@@ -15547,10 +15561,11 @@ var SignUpPage = function (_React$Component) {
       event.preventDefault();
 
       // create a string for an HTTP body message
-      var name = encodeURIComponent(this.state.user.name);
+      var name = encodeURIComponent(this.state.user.firsNname);
       var email = encodeURIComponent(this.state.user.email);
       var password = encodeURIComponent(this.state.user.password);
-      var formData = 'name=' + name + '&email=' + email + '&password=' + password;
+      var phone = encodeURIComponent(this.state.user.phone);
+      var formData = 'name=' + name + '&email=' + email + '&password=' + password + '&phone=' + phone;
 
       // create an AJAX request
       var xhr = new XMLHttpRequest();

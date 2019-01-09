@@ -9,7 +9,8 @@ const router = new express.Router();
 
 
 router.get("/scrape", function (req, res) { 
-    axios.get("").then(function (response) {
+    axios.get("https://www.macrumors.com/search/?s=").then(function (response) {
+        console.log(req.user);
         // Then, we load that into cheerio and save it to $ for a shorthand selector
         var $ = cheerio.load(response.data);
 

@@ -31,8 +31,8 @@ const UserSchema = new mongoose.Schema({
     enum: ['active', 'inactive'],
     default: 'active'
   },
-  devices: {
-    phones: []
+  phone: {
+    type: String
   }
 });
 

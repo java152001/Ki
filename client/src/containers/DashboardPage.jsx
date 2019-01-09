@@ -33,6 +33,7 @@ class DashboardPage extends React.Component {
           secretData: xhr.response.message,
           user: xhr.response.user
         });
+        console.log(this.state.user)
       }
     });
     xhr.send();
