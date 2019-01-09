@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 module.exports.connect = (uri) => {
+
   mongoose.connect(uri);
   // plug in the promise library:
   mongoose.Promise = global.Promise;
@@ -13,6 +14,12 @@ module.exports.connect = (uri) => {
 
   // load models
   require('./user');
+  require('./article');
+  require('./comment');
 };
 
+/*
+module.exports.Article = require('./article');
+module.exports.Comment = require('./comment');
+*/
  
