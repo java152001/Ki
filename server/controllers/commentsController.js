@@ -17,10 +17,14 @@ module.exports = {
         .catch(err => res.status(422).json(err));
     },
     create: function(req, res) {
+      console.log(req.body)
       Comment
         .create(req.body)
         .then(function(dbModel) {
-          return Article.findOneAndUpdate({}, { $push: { comment: dbModel._id } }, {new: true})
+          Article.findOneAndUpdate({_id: req.body.article}, { $push: { comments: dbModel._id } }, {new: true}).then(function(finArticle)
+          {
+            res.json(finArticle)
+          })
         })
         .catch(err => res.status(422).json(err));
     },

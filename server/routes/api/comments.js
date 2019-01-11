@@ -1,5 +1,9 @@
 const router = require("express").Router();
 const commentsController = require("../../controllers/commentsController");
+const bodyParser = require("body-parser");
+
+router.use(bodyParser.urlencoded({ extended: true }));
+
 
 // Matches with "/api/comments"
 router.route("/")

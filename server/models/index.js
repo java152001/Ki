@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 module.exports.connect = (uri) => {
 
-  mongoose.connect(uri);
+  mongoose.connect(uri, {useNewUrlParser: true, useCreateIndex: true});
   // plug in the promise library:
   mongoose.Promise = global.Promise;
 
@@ -17,9 +17,3 @@ module.exports.connect = (uri) => {
   require('./article');
   require('./comment');
 };
-
-/*
-module.exports.Article = require('./article');
-module.exports.Comment = require('./comment');
-*/
- 
