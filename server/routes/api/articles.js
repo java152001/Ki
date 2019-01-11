@@ -4,7 +4,7 @@ const axios = require("axios");
 const bodyParser = require("body-parser");
 const logger = require("morgan");
 const cheerio = require("cheerio");
-const Article = require("mongoose").model('Article');
+var Article = require("mongoose").model('Article');
 
 // Use morgan logger for logging requests
 router.use(logger("dev"));
@@ -17,17 +17,13 @@ router.route("/")
   .post(articlesController.create);
 
 // Matches with "/api/articles/:id"
-router
-  .route("/:id")
-  .get(articlesController.findById)
-  .put(articlesController.update)
-  .delete(articlesController.remove);
 
 router.get("/scrape", function (req, res) {
   // First, we grab the body of the html with request
   axios.get("http://www.echojs.com/").then(function (response) {
     // Then, we load that into cheerio and save it to $ for a shorthand selector
     var $ = cheerio.load(response.data);
+    console.log(response)
     // Now, we grab every h2 within an article tag, and do the following:
     $("article h2").each(function (i, element) {
       // Save an empty result object
@@ -40,7 +36,7 @@ router.get("/scrape", function (req, res) {
       result.link = $(this)
         .children("a")
         .attr("href");
-      
+
       // Create a new Article using the `result` object built from scraping
       Article.create(result)
         .then(function (dbArticle) {
@@ -52,9 +48,16 @@ router.get("/scrape", function (req, res) {
           return res.json(err);
         });
     });
-    console.log("Successful Scrape!");
+    res.send("Scrape Complete");
     // If we were able to successfully scrape and save an Article, send a message to the client
   });
 });
+
+
+router
+  .route("/:id")
+  .get(articlesController.findById)
+  .put(articlesController.update)
+  .delete(articlesController.remove);
 
 module.exports = router;

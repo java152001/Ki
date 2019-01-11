@@ -23,17 +23,17 @@ passport.use('local-login', localLoginStrategy);
 
 // pass the authenticaion checker middleware
 const authCheckMiddleware = require('./server/middleware/auth-check');
-app.use('/api', authCheckMiddleware);
+app.use('/api/home', authCheckMiddleware);
 
 // routes
 const authRoutes = require('./server/routes/auth');
 const apiRoutes = require('./server/routes/api');
 const articlesRoutes = require('./server/routes/api/articles');
 const commentsRoutes = require('./server/routes/api/comments');
-app.use('/auth', authRoutes);
-app.use('/api', apiRoutes);
-app.use('/articles', articlesRoutes);
-app.use('/comments', commentsRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/home', apiRoutes);
+app.use('/api/articles', articlesRoutes);
+app.use('/api/comments', commentsRoutes);
 
 // Set Port, hosting services will look for process.env.PORT
 app.set('port', (process.env.PORT || 3000));

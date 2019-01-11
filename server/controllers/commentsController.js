@@ -1,4 +1,5 @@
 const Comment = require("mongoose").model('Comment');
+const Article = require("mongoose").model('Article');
 
 // Defining methods for the CommentsController
 module.exports = {
@@ -18,7 +19,9 @@ module.exports = {
     create: function(req, res) {
       Comment
         .create(req.body)
-        .then(dbModel => res.json(dbModel))
+        .then(function(dbModel) {
+          return Article.findOneAndUpdate({}, { $push: { comment: dbModel._id } }, {new: true})
+        })
         .catch(err => res.status(422).json(err));
     },
     update: function(req, res) {

@@ -5,14 +5,17 @@ var Schema = mongoose.Schema;
 var CommentSchema = new Schema({
 
   title: String,
-  body: String,
+  body: {
+    type: String,
+    required: true
+  },
   user: {
     type: Schema.Types.ObjectId,
-    ref: "User"
+    ref: "User",
   },
   article: {
     type: Schema.Types.ObjectId,
-    ref: "Article"
+    ref: "Article",
   }
 });
 
