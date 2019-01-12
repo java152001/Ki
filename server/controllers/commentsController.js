@@ -21,9 +21,9 @@ module.exports = {
     Comment
       .create(req.body)
       .then(function (dbModel) {
-        Article.findOneAndUpdate({ _id: req.body.article },
-          { $push: { comments: dbModel._id } },
-          { new: true }).then(function (finArticle) {
+        Article.findOneAndUpdate({ _id: dbModel.article },
+          { $push: { comments: dbModel._id } }, { new: true })
+          .then(function (finArticle) {
             res.json(finArticle)
           })
       })
@@ -39,7 +39,13 @@ module.exports = {
     Comment
       .findById({ _id: req.params.id })
       .then(dbModel => dbModel.remove())
-      .then(dbModel => res.json(dbModel))
+      .then(function (dbModel) {
+        Article.findOneAndUpdate({ _id: dbModel.article },
+          { $pull: { comments: dbModel._id } }, { new: true })
+          .then(function (finArticle) {
+            res.json(finArticle)
+          })
+      })
       .catch(err => res.status(422).json(err));
   }
 };
