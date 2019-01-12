@@ -9,7 +9,7 @@ const router = new express.Router();
 router.get('/dashboard', (req, res) => {
 
   axios.get("https://www.macrumors.com/search/?s=" + req.user.phone).then(function (response) {
-        console.log(req.user);
+        console.log("req.user");
         // Then, we load that into cheerio and save it to $ for a shorthand selector
         var $ = cheerio.load(response.data);
 
@@ -32,8 +32,10 @@ router.get('/dashboard', (req, res) => {
             dbArticle.create(result)
                 .then(function (dbArticle) {
                     // View the added result in the console
+                    if(dbArticle) {
                     console.log(dbArticle);
                     console.log("Something")
+                    }
                 })
                 .catch(function (err) {
                     // If an error occurred, send it to the client
@@ -41,12 +43,24 @@ router.get('/dashboard', (req, res) => {
                 });
         });
     });
+    
+
 
   res.status(200).json({
     message: "You're authorized to see this secret message.",
     // user values passed through from auth middleware
     user: req.user
   });
+
+  
+});
+
+router.get('/articles', (req, res) => {
+    dbArticle.find({})
+    .then(function(dbArticle) {
+        res.json(dbArticle)
+        console.log("API DB Article")
+    })
 });
 
 module.exports = router;
