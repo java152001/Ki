@@ -29,9 +29,11 @@ app.use('/api', authCheckMiddleware);
 const authRoutes = require('./server/routes/auth');
 const apiRoutes = require('./server/routes/api');
 const articlesRoutes = require('./server/routes/articles');
+const commentsRoutes = require('./server/routes/dBapi/comments');
 app.use('/auth', authRoutes);
 app.use('/api', apiRoutes);
 app.use(articlesRoutes);
+app.use('/api/comments', commentsRoutes)
 
 // Set Port, hosting services will look for process.env.PORT
 app.set('port', (process.env.PORT || 3000));

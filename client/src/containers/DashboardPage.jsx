@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Auth from '../modules/Auth';
 import Dashboard from '../components/Dashboard.jsx';
+import ArticleCard from '../components/ArticleCard.jsx';
+import API from "../utils/API"
+import Button from 'material-ui/FlatButton';
+import axios from "axios";
 
+axios.defaults.headers.common['Authorization'] = `Bearer ${Auth.getToken()}`;
 
 class DashboardPage extends React.Component {
 
@@ -13,37 +18,57 @@ class DashboardPage extends React.Component {
 
     this.state = {
       secretData: '',
-      user: {}
+      user: {},
+      articles: [],
+      showArticles: false
     };
+    this.handleBtnClick = this.handleBtnClick.bind(this)
   }
 
   /**
    * This method will be executed after initial rendering.
    */
   componentDidMount() {
-    const xhr = new XMLHttpRequest();
-    xhr.open('get', '/api/dashboard');
-    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    // set the authorization HTTP header
-    xhr.setRequestHeader('Authorization', `bearer ${Auth.getToken()}`);
-    xhr.responseType = 'json';
-    xhr.addEventListener('load', () => {
-      if (xhr.status === 200) {
+
+    API.scrape()
+      .then(res => {
         this.setState({
-          secretData: xhr.response.message,
-          user: xhr.response.user
-        });
-        console.log(this.state.user)
-      }
-    });
-    xhr.send();
+          secretData: res.data.message,
+          user: res.data.user
+        })
+      });
+
+  }
+
+  handleBtnClick() {
+    API.getArticles()
+      .then(response => {
+        this.setState({
+          articles: response.data,
+          showArticles: true
+        })
+
+        console.log(response)
+        console.log(this.state)
+      })
+
   }
 
   /**
    * Render the component.
    */
   render() {
-    return (<Dashboard secretData={this.state.secretData} user={this.state.user} />);
+    return (
+      <div>
+        <Dashboard secretData={this.state.secretData} user={this.state.user} handleBtnClick={this.handleBtnClick} />
+        {this.state.showArticles ?
+          this.state.articles.map((article, i) =>
+          <div>
+            <ArticleCard key={i} article={article} data-id={article}/>
+            </div>
+          ) : false}
+      </div>
+    );
   }
 
 }

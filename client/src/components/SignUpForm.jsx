@@ -20,11 +20,21 @@ const SignUpForm = ({
 
       <div className="field-line">
         <TextField
-          floatingLabelText="Name"
-          name="name"
-          errorText={errors.name}
+          floatingLabelText="First Name"
+          name="firstName"
+          errorText={errors.firstName}
           onChange={onChange}
-          value={user.name}
+          value={user.firstName}
+        />
+      </div>
+
+      <div className="field-line">
+        <TextField
+          floatingLabelText="Last Name"
+          name="lastName"
+          errorText={errors.lastName}
+          onChange={onChange}
+          value={user.lastName}
         />
       </div>
 
