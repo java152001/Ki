@@ -12,12 +12,11 @@ module.exports = {
   },
   findById: function (req, res) {
     Comment
-      .findById(req.params.id)
+      .findOne({_id: req.params.id})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   create: function (req, res) {
-    console.log(req.body)
     Comment
       .create(req.body)
       .then(function (dbModel) {
@@ -38,7 +37,7 @@ module.exports = {
   remove: function (req, res) {
     Comment
       .findById({ _id: req.params.id })
-      .then(dbModel => dbModel.remove())
+      .then(dbModel => dbModel.delete())
       .then(function (dbModel) {
         Article.findOneAndUpdate({ _id: dbModel.article },
           { $pull: { comments: dbModel._id } }, { new: true })

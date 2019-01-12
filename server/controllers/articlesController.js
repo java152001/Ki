@@ -1,3 +1,4 @@
+const Comment = require("mongoose").model('Comment');
 const Article = require("mongoose").model('Article');
 
 // Defining methods for the ArticlesController
@@ -11,7 +12,7 @@ module.exports = {
     },
     findById: function(req, res) {
       Article
-        .findById(req.params.id)
+        .findOne({ _id: req.params.id})
         .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err));
     },
@@ -31,7 +32,10 @@ module.exports = {
       Article
         .findById({ _id: req.params.id })
         .then(dbModel => dbModel.remove())
-        .then(dbModel => res.json(dbModel))
+        .then(function (dbModel) {
+          Comment.deleteMany({ article: dbModel._id })
+          .then(dbModel => res.json(dbModel))
+        })
         .catch(err => res.status(422).json(err));
     }
   };
