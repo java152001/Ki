@@ -21994,36 +21994,43 @@ var _API = __webpack_require__(93);
 
 var _API2 = _interopRequireDefault(_API);
 
+var _Jumbotron = __webpack_require__(291);
+
+var _Jumbotron2 = _interopRequireDefault(_Jumbotron);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Dashboard = function Dashboard(_ref) {
   var secretData = _ref.secretData,
       user = _ref.user,
-      handleBtnClick = _ref.handleBtnClick;
+      handleBtnClick = _ref.handleBtnClick,
+      imageurl = _ref.imageurl;
   return _react2.default.createElement(
-    _Card.Card,
-    { className: 'container' },
-    _react2.default.createElement(_Card.CardTitle, {
-      title: 'Dashboard',
-      subtitle: 'You should get access to this page only after authentication.'
-    }),
-    secretData && _react2.default.createElement(
-      _Card.CardText,
-      { style: { fontSize: '16px', color: 'green' } },
-      'Welcome ',
-      _react2.default.createElement(
-        'strong',
-        null,
-        user.firstName
-      ),
-      '!',
-      _react2.default.createElement('br', null),
-      secretData
-    ),
+    'div',
+    null,
     _react2.default.createElement(
-      _FlatButton2.default,
-      { onClick: handleBtnClick },
-      'Test'
+      _Jumbotron2.default,
+      { imageurl: imageurl },
+      _react2.default.createElement(_Card.CardTitle, {
+        title: 'Dashboard'
+      }),
+      _react2.default.createElement(
+        _Card.CardText,
+        { style: { fontSize: '16px', color: 'green' } },
+        'Welcome ',
+        _react2.default.createElement(
+          'strong',
+          null,
+          user.firstName
+        ),
+        '! You have articles to review!',
+        _react2.default.createElement('br', null)
+      ),
+      _react2.default.createElement(
+        _FlatButton2.default,
+        { onClick: handleBtnClick },
+        'Show Articles!'
+      )
     )
   );
 };
@@ -22607,10 +22614,11 @@ var DashboardPage = function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+
       return _react2.default.createElement(
         "div",
         null,
-        _react2.default.createElement(_Dashboard2.default, { secretData: this.state.secretData, user: this.state.user, handleBtnClick: this.handleBtnClick }),
+        _react2.default.createElement(_Dashboard2.default, { secretData: this.state.secretData, user: this.state.user, handleBtnClick: this.handleBtnClick, imageurl: './images/background_dashboard.jpg' }),
         this.state.showArticles ? this.state.articles.map(function (article, i) {
           return _react2.default.createElement(
             "div",
