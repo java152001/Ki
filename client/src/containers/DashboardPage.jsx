@@ -1,15 +1,14 @@
-import React, { Component } from 'react';
-import Auth from '../modules/Auth';
-import Dashboard from '../components/Dashboard.jsx';
-import ArticleCard from '../components/ArticleCard.jsx';
-import API from "../utils/API"
-import Button from 'material-ui/FlatButton';
+import React, { Component } from "react";
+import Auth from "../modules/Auth";
+import Dashboard from "../components/Dashboard.jsx";
+import ArticleCard from "../components/ArticleCard.jsx";
+import API from "../utils/API";
+import Button from "material-ui/FlatButton";
 import axios from "axios";
 
-axios.defaults.headers.common['Authorization'] = `Bearer ${Auth.getToken()}`;
+axios.defaults.headers.common["Authorization"] = `Bearer ${Auth.getToken()}`;
 
 class DashboardPage extends React.Component {
-
   /**
    * Class constructor.
    */
@@ -17,41 +16,36 @@ class DashboardPage extends React.Component {
     super(props);
 
     this.state = {
-      secretData: '',
+      secretData: "",
       user: {},
       articles: [],
       showArticles: false
     };
-    this.handleBtnClick = this.handleBtnClick.bind(this)
+    this.handleBtnClick = this.handleBtnClick.bind(this);
   }
 
   /**
    * This method will be executed after initial rendering.
    */
   componentDidMount() {
-
-    API.scrape()
-      .then(res => {
-        this.setState({
-          secretData: res.data.message,
-          user: res.data.user
-        })
+    API.scrape().then(res => {
+      this.setState({
+        secretData: res.data.message,
+        user: res.data.user
       });
-
+    });
   }
 
   handleBtnClick() {
-    API.getArticles()
-      .then(response => {
-        this.setState({
-          articles: response.data,
-          showArticles: true
-        })
+    API.getArticles().then(response => {
+      this.setState({
+        articles: response.data,
+        showArticles: true
+      });
 
-        console.log(response)
-        console.log(this.state)
-      })
-
+      console.log(response);
+      console.log(this.state);
+    });
   }
 
   /**
@@ -60,17 +54,21 @@ class DashboardPage extends React.Component {
   render() {
     return (
       <div>
-        <Dashboard secretData={this.state.secretData} user={this.state.user} handleBtnClick={this.handleBtnClick} />
-        {this.state.showArticles ?
-          this.state.articles.map((article, i) =>
-          <div>
-            <ArticleCard key={i} article={article} data-id={article}/>
-            </div>
-          ) : false}
+        <Dashboard
+          secretData={this.state.secretData}
+          user={this.state.user}
+          handleBtnClick={this.handleBtnClick}
+        />
+        {this.state.showArticles
+          ? this.state.articles.map((article, i) => (
+              <div>
+                <ArticleCard key={i} article={article} data-id={article} />
+              </div>
+            ))
+          : false}
       </div>
     );
   }
-
 }
 
 export default DashboardPage;
