@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Auth from '../modules/Auth';
 import Dashboard from '../components/Dashboard.jsx';
 import ArticleCard from '../components/ArticleCard.jsx';
+import DialogExampleSimple from '../components/DialogExampleSimple.jsx';
 import API from "../utils/API"
 import Button from 'material-ui/FlatButton';
 import axios from "axios";
@@ -64,6 +65,7 @@ class DashboardPage extends React.Component {
         {this.state.showArticles ?
           this.state.articles.map((article, i) =>
           <div>
+            {/* <DialogExampleSimple key={i}/> */}
             <ArticleCard key={i} article={article} data-id={article}/>
             </div>
           ) : false}
