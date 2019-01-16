@@ -17181,6 +17181,8 @@ var _Card = __webpack_require__(59);
 
 var _Auth = _interopRequireDefault(__webpack_require__(51));
 
+var _Jumbotron = _interopRequireDefault(__webpack_require__(490));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -17221,9 +17223,7 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      return _react.default.createElement(_Card.Card, {
-        className: "container"
-      }, _react.default.createElement(_Card.CardTitle, {
+      return _react.default.createElement(_Jumbotron.default, null, _react.default.createElement(_Card.CardTitle, {
         title: "React Application",
         subtitle: "This is the home page."
       }), _Auth.default.isUserAuthenticated() ? _react.default.createElement(_Card.CardText, {
@@ -17481,7 +17481,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
-_axios.default.defaults.headers.common['Authorization'] = "Bearer ".concat(_Auth.default.getToken());
+_axios.default.defaults.headers.common["Authorization"] = "Bearer ".concat(_Auth.default.getToken());
 
 var DashboardPage =
 /*#__PURE__*/
@@ -17498,7 +17498,7 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(DashboardPage).call(this, props));
     _this.state = {
-      secretData: '',
+      secretData: "",
       user: {},
       articles: [],
       showArticles: false
@@ -48487,6 +48487,59 @@ module.exports = function() {
 	throw new Error("define cannot be used indirect");
 };
 
+
+/***/ }),
+/* 489 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(__webpack_require__(1));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Jumbotron = function Jumbotron(_ref) {
+  var children = _ref.children;
+  return _react.default.createElement("div", {
+    style: {
+      height: 300,
+      clear: "both",
+      paddingTop: 120,
+      textAlign: "center"
+    },
+    className: "jumbotron"
+  }, children);
+};
+
+var _default = Jumbotron;
+exports.default = _default;
+
+/***/ }),
+/* 490 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "default", {
+  enumerable: true,
+  get: function get() {
+    return _Jumbotron.default;
+  }
+});
+
+var _Jumbotron = _interopRequireDefault(__webpack_require__(489));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ })
 /******/ ]);

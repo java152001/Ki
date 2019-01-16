@@ -7,10 +7,9 @@ import API from "../utils/API"
 import Button from 'material-ui/FlatButton';
 import axios from "axios";
 
-axios.defaults.headers.common['Authorization'] = `Bearer ${Auth.getToken()}`;
+axios.defaults.headers.common["Authorization"] = `Bearer ${Auth.getToken()}`;
 
 class DashboardPage extends React.Component {
-
   /**
    * Class constructor.
    */
@@ -18,41 +17,36 @@ class DashboardPage extends React.Component {
     super(props);
 
     this.state = {
-      secretData: '',
+      secretData: "",
       user: {},
       articles: [],
       showArticles: false
     };
-    this.handleBtnClick = this.handleBtnClick.bind(this)
+    this.handleBtnClick = this.handleBtnClick.bind(this);
   }
 
   /**
    * This method will be executed after initial rendering.
    */
   componentDidMount() {
-
-    API.scrape()
-      .then(res => {
-        this.setState({
-          secretData: res.data.message,
-          user: res.data.user
-        })
+    API.scrape().then(res => {
+      this.setState({
+        secretData: res.data.message,
+        user: res.data.user
       });
-
+    });
   }
 
   handleBtnClick() {
-    API.getArticles()
-      .then(response => {
-        this.setState({
-          articles: response.data,
-          showArticles: true
-        })
+    API.getArticles().then(response => {
+      this.setState({
+        articles: response.data,
+        showArticles: true
+      });
 
-        console.log(response)
-        console.log(this.state)
-      })
-
+      console.log(response);
+      console.log(this.state);
+    });
   }
 
   /**
@@ -72,7 +66,6 @@ class DashboardPage extends React.Component {
       </div>
     );
   }
-
 }
 
 export default DashboardPage;
