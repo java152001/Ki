@@ -47,10 +47,6 @@ class DashboardPage extends React.Component {
         //console.log(response)
         //console.log(this.state)
       })
-
-      console.log(response);
-      console.log(this.state);
-    });
   }
 
   // handleLinkBtn(link) {
