@@ -48,11 +48,17 @@ class DashboardPage extends React.Component {
           showArticles: true
         })
 
-        console.log(response)
-        console.log(this.state)
+        //console.log(response)
+        //console.log(this.state)
       })
 
   }
+
+  // handleLinkBtn(link) {
+
+  //   console.log(link)
+  //   // window.open(link, '_blank');
+  // }
 
   /**
    * Render the component.
@@ -64,7 +70,9 @@ class DashboardPage extends React.Component {
         {this.state.showArticles ?
           this.state.articles.map((article, i) =>
           <div>
-            <ArticleCard key={i} article={article} data-id={article}/>
+            <ArticleCard key={i} article={article} data-id={article} 
+            // handleLinkBtn={this.handleLinkBtn}
+            />
             </div>
           ) : false}
       </div>
