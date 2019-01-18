@@ -12,7 +12,12 @@ const ArticleCard = ({ article }) => (
                 function() {
                     window.open(article.link, '_blank');
                 }
-            )}>Go To Article</Button>
+            )}>Open Article</Button>
+            <Button size="small" color="secondary" onClick={(
+                function() {
+                    API.deleteArticle(article._id)
+                }
+            )}>Delete Article</Button>
         </CardActions>
     </Card>
 )

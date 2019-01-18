@@ -8,6 +8,9 @@ export default {
   // Gets the book with the given id
   getArticles: function() {
     return axios.get("/api/articles");
+  },
+  deleteArticle: function(articleID) {
+    return axios.delete("/api/articles/" +
+      articleID)
   }
-  
 };

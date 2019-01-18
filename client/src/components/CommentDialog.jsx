@@ -4,6 +4,7 @@ import FlatButton from 'material-ui/FlatButton';
 import ArticleCard from '../components/ArticleCard.jsx';
 import TextField from 'material-ui/TextField'
 
+
 class CommentDialog extends React.Component {
 
   constructor(props) {
@@ -30,42 +31,42 @@ class CommentDialog extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
     const actions = [
+      <div style={{ textAlign: "left", margin: "2%"}}>  
       <TextField
-      id="standard-textarea"
-      label="With placeholder multiline"
-      placeholder="Placeholder"
-      multiline
-      className={classes.textField}
-      margin="normal"
-    />,
-      <FlatButton
-        label="Cancel"
-        primary={true}
-        onClick={this.handleClose}
-      />,
-      <FlatButton
-        label="OK"
-        primary={true}
-        keyboardFocused={true}
-        onClick={this.handleClose}
-      />
+        id="standard-textarea"
+        label="With placeholder multiline"
+        placeholder="Enter Comment Here"
+        multiline
+        margin="normal"
+      /></div>,
+      <div style={{ textAlign: "left" }}>
+        <FlatButton
+          label="Post"
+          primary={true}
+          keyboardFocused={true}
+          onClick={this.handleAddComment}
+        />
+        <FlatButton
+          label="Cancel"
+          primary={true}
+          onClick={this.handleClose}
+        /></div>
     ];
 
     return (
       <div>
         <div onClick={this.handleOpen}>
-        <ArticleCard article={this.props.article} label="Dialog"/>
+          <ArticleCard article={this.props.article} label="Dialog" />
         </div>
         <Dialog
-          title="Dialog With Actions"
+          title={'Comments - ' + this.props.article.title}
           actions={actions}
           modal={false}
           open={this.state.open}
           onRequestClose={this.handleClose}
         >
-        {this.props.article.comments}
+          {this.props.article.comments}
         </Dialog>
       </div>
     );
