@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
   // the entry file for the bundle
-  entry: path.join(__dirname, '/client/src/app.jsx'),
+  entry: {path: path.join(__dirname, '/client/src/app.jsx')},
 
   // the bundle file we will get in the result
   output: {
@@ -18,11 +18,11 @@ module.exports = {
     // npm install --save-dev babel-plugin-transform-object-rest-spread
     loaders: [{
       test: /\.jsx?$/,
-      include: path.join(__dirname, '/client/src'),
+      //include: path.join(__dirname, '/client/src'),
       loader: 'babel-loader',
       query: {
-        presets: ["react", "es2015"],
-        plugins: ["transform-es2015-destructuring", "transform-object-rest-spread"]
+        presets: ["@babel/react", "@babel/preset-env"],
+        plugins: [ "@babel/plugin-proposal-class-properties", "transform-object-rest-spread"]
       }
     }],
   },
