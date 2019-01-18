@@ -26,8 +26,6 @@ class SignUpPage extends React.Component {
 
     this.processForm = this.processForm.bind(this);
     this.changeUser = this.changeUser.bind(this);
-    // this.handleClose = this.handleClose.bind(this);
-    // this.handleOpen = this.handleOpen.bind(this);
   }
 
   /**
@@ -92,18 +90,13 @@ class SignUpPage extends React.Component {
     const user = this.state.user;
     user[field] = event.target.value;
 
+    console.log(field + " " + user)
+
     this.setState({
       user
     });
   }
 
-  // handleClose() {
-  //   this.setState({ open: false })
-  // };
-
-  // handleOpen() {
-  //   this.setState({ open: true })
-  // }
 
   /**
    * Render the component.
@@ -115,9 +108,6 @@ class SignUpPage extends React.Component {
         onChange={this.changeUser}
         errors={this.state.errors}
         user={this.state.user}
-        // handleOpen={this.handleOpen}
-        // handleClose={this.handleClose}
-        // open={this.state.open}
       />
     );
   }
