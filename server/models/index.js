@@ -14,7 +14,7 @@ module.exports.connect = (uri) => {
   // load models
   require('./user');
   require('./article');
-  require('./comment');
+  require('./comment'); 
 };
 
  

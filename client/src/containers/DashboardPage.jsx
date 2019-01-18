@@ -37,35 +37,40 @@ class DashboardPage extends React.Component {
   }
 
   handleBtnClick() {
-    API.getArticles().then(response => {
-      this.setState({
-        articles: response.data,
-        showArticles: true
-      });
+    API.getArticles()
+      .then(response => {
+        this.setState({
+          articles: response.data,
+          showArticles: true
+        })
 
-      console.log(response);
-      console.log(this.state);
-    });
+        //console.log(response)
+        //console.log(this.state)
+      })
   }
+
+  // handleLinkBtn(link) {
+
+  //   console.log(link)
+  //   // window.open(link, '_blank');
+  // }
 
   /**
    * Render the component.
    */
   render() {
+
     return (
       <div>
-        <Dashboard
-          secretData={this.state.secretData}
-          user={this.state.user}
-          handleBtnClick={this.handleBtnClick}
-        />
-        {this.state.showArticles
-          ? this.state.articles.map((article, i) => (
-              <div>
-                <ArticleCard key={i} article={article} data-id={article} />
-              </div>
-            ))
-          : false}
+        <Dashboard secretData={this.state.secretData} user={this.state.user} handleBtnClick={this.handleBtnClick} imageurl={'./images/background_dashboard.jpg'} />
+        {this.state.showArticles ?
+          this.state.articles.map((article, i) =>
+          <div>
+            <ArticleCard key={i} article={article} data-id={article} 
+            // handleLinkBtn={this.handleLinkBtn}
+            />
+            </div>
+          ) : false}
       </div>
     );
   }
