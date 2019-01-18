@@ -4,20 +4,20 @@ import { Link } from 'react-router-dom';
 import { Card, CardText } from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
+// import InputLabel from '@material-ui/core/InputLabel';
+// import MenuItem from '@material-ui/core/MenuItem';
+// import FormControl from '@material-ui/core/FormControl';
+// import Select from '@material-ui/core/Select';
 
 
 const SignUpForm = ({
   onSubmit,
   onChange,
   errors,
-  user,
-  handleOpen,
-  handleClose,
-  open
+  user
+  // handleOpen,
+  // handleClose,
+  // open
 }) => (
   <Card className="container">
     <form action="/" onSubmit={onSubmit}>
@@ -66,7 +66,7 @@ const SignUpForm = ({
         />
       </div>
 
-      <div className = "field-line">
+      {/* <div className = "field-line">
 
         <Select
         open={open}
@@ -86,7 +86,7 @@ const SignUpForm = ({
           <MenuItem value="iphonexr">iPhone XR</MenuItem>
           <MenuItem value="iphonexs">iPhone XS</MenuItem>
         </Select>
-      </div>
+      </div> */}
 
       <div className="field-line">
         <TextField
