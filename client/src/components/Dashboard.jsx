@@ -5,8 +5,6 @@ import Button from 'material-ui/FlatButton';
 import API from "../utils/API";
 
 
-
-
 const Dashboard = ({ secretData, user, handleBtnClick}) => (
   <Card className="container">
     <CardTitle
