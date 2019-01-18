@@ -60,7 +60,7 @@ class DialogExampleSimple extends React.Component {
     return (
       <div>
         <div onClick={this.handleOpen}>
-        <ArticleCard article={this.props.article} label="Dialog"/>
+        <ArticleCard article={this.props.article} key={this.props.titleId} titleId={this.props.titleId + 1} label="Dialog"/>
         </div>
         <Dialog
           title="Dialog With Actions"
