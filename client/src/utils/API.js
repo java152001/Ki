@@ -13,6 +13,6 @@ export default {
     return axios.get("/api/comments");
   },
   saveComment: function(articleObj) {
-    return axios.post("/api/comments");
+    return axios.post("/api/comments", articleObj);
   }
 };

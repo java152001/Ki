@@ -12,6 +12,8 @@ app.use(express.static('./server/static/'));
 app.use(express.static('./client/dist/'));
 // tell the app to parse HTTP body messages
 app.use(bodyParser.urlencoded({ extended: false }));
+// tell the app to parse JSON
+app.use(bodyParser.json());
 // pass the passport middleware
 app.use(passport.initialize());
 
@@ -32,7 +34,7 @@ const articlesRoutes = require('./server/routes/articles');
 const commentsRoutes = require('./server/routes/dBapi/comments');
 app.use('/auth', authRoutes);
 app.use('/api', apiRoutes);
-app.use(articlesRoutes);
+// app.use('/api/comments');
 app.use('/api/comments', commentsRoutes)
 
 // Set Port, hosting services will look for process.env.PORT

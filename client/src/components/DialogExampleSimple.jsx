@@ -13,8 +13,19 @@ class DialogExampleSimple extends React.Component {
 
     this.state = {
       open: false,
+      comment: "",
+      article: {},
+      user: {}
     };
   }
+
+componentDidMount() {
+  this.setState({
+    article: this.props.article,
+    user: this.props.user
+  })
+}
+
 
   handleOpen = () => {
     this.setState({ open: true });
@@ -24,14 +35,31 @@ class DialogExampleSimple extends React.Component {
     this.setState({ open: false });
   };
 
-  postComment = () => {
-    API.saveComment
+  inputChange = (event) => {
+    this.setState({
+      comment: event.target.value
+    })
+  }
+
+  postComment = (event) => {
+    event.preventDefault();
+
+    const commentObj = {
+      title: this.state.comment,
+      article: this.state.article,
+      user: this.state.user
+    }
+
+    API.saveComment(commentObj)
   }
 
   render() {
     const actions = [
       <TextField 
         style={{margin: 'auto'}}
+        name="comment"
+        value={this.state.value}
+        onChange={this.inputChange}
         id="standard-textarea"
         label="With placeholder multiline"
         placeholder="Placeholder"

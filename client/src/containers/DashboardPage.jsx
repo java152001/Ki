@@ -66,7 +66,7 @@ class DashboardPage extends React.Component {
         {this.state.showArticles ?
           this.state.articles.map((article, i) =>
           <div>
-            <DialogExampleSimple article={article} data-id={article}/>
+            <DialogExampleSimple article={article} data-id={article} user={this.state.user}/>
             </div>
           ) : false}
       </div>

@@ -10,13 +10,13 @@ var CommentSchema = new Schema({
   },
   user: {
     type: Schema.Types.ObjectId,
-    ref: "User",
-    required: true
+    ref: "User"
+    // required: true
   },
   article: {
     type: Schema.Types.ObjectId,
-    ref: "Article",
-    required: true
+    ref: "Article"
+    // required: true
   }
 });
 
