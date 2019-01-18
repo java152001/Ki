@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import Auth from '../modules/Auth';
 import Dashboard from '../components/Dashboard.jsx';
-import DialogExampleSimple from '../components/DialogExampleSimple.jsx';
 import API from "../utils/API"
 import Button from 'material-ui/FlatButton';
 import axios from "axios";
+import CommentDialog from '../components/CommentDialog.jsx';
 
 axios.defaults.headers.common["Authorization"] = `Bearer ${Auth.getToken()}`;
 
@@ -66,7 +66,7 @@ class DashboardPage extends React.Component {
         {this.state.showArticles ?
           this.state.articles.map((article, i) =>
           <div>
-            <DialogExampleSimple article={article} data-id={article}/>
+            <CommentDialog article={article} data-id={article}/>
             </div>
           ) : false}
       </div>
