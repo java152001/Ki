@@ -37,21 +37,29 @@ class DashboardPage extends React.Component {
   }
 
   handleBtnClick() {
-    API.getArticles().then(response => {
-      this.setState({
-        articles: response.data,
-        showArticles: true
-      });
+    API.getArticles()
+      .then(response => {
+        this.setState({
+          articles: response.data,
+          showArticles: true
+        })
 
-      console.log(response);
-      console.log(this.state);
-    });
+        //console.log(response)
+        //console.log(this.state)
+      })
   }
+
+  // handleLinkBtn(link) {
+
+  //   console.log(link)
+  //   // window.open(link, '_blank');
+  // }
 
   /**
    * Render the component.
    */
   render() {
+
     return (
       <div>
         <Dashboard secretData={this.state.secretData} user={this.state.user} handleBtnClick={this.handleBtnClick} />
