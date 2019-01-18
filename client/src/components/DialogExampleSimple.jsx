@@ -3,6 +3,8 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import ArticleCard from '../components/ArticleCard.jsx';
+import TextField from 'material-ui/TextField'
+import API from "../utils/API.js"
 
 class DialogExampleSimple extends React.Component {
 
@@ -22,8 +24,20 @@ class DialogExampleSimple extends React.Component {
     this.setState({ open: false });
   };
 
+  postComment = () => {
+    API.saveComment
+  }
+
   render() {
     const actions = [
+      <TextField 
+        style={{margin: 'auto'}}
+        id="standard-textarea"
+        label="With placeholder multiline"
+        placeholder="Placeholder"
+        multiline
+        margin="normal"
+      />,
       <FlatButton
         label="Cancel"
         primary={true}
@@ -35,6 +49,12 @@ class DialogExampleSimple extends React.Component {
         keyboardFocused={true}
         onClick={this.handleClose}
       />,
+      <FlatButton
+        type="submit"
+        label="Submit Comment"
+        primary={true}
+        onClick={this.postComment}
+      />
     ];
 
     return (
