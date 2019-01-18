@@ -4,20 +4,13 @@ import { Link } from 'react-router-dom';
 import { Card, CardText } from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
-// import InputLabel from '@material-ui/core/InputLabel';
-// import MenuItem from '@material-ui/core/MenuItem';
-// import FormControl from '@material-ui/core/FormControl';
-// import Select from '@material-ui/core/Select';
-
 
 const SignUpForm = ({
   onSubmit,
   onChange,
   errors,
-  user
-  // handleOpen,
-  // handleClose,
-  // open
+  user,
+  handleChange
 }) => (
   <Card className="container">
     <form action="/" onSubmit={onSubmit}>
@@ -66,29 +59,24 @@ const SignUpForm = ({
         />
       </div>
 
-      {/* <div className = "field-line">
-
-        <Select
-        open={open}
-        onClose={handleClose}
-        onOpen={handleOpen}
-        value={user.phone}
-        onChange={onChange}
-        >
-          <MenuItem value=""> </MenuItem>
-          <MenuItem value="iphone6">iPhone 6</MenuItem>
-          <MenuItem value="iphone6s">iPhone 6s</MenuItem>
-          <MenuItem value="iphone7">iPhone 7</MenuItem>
-          <MenuItem value="iphone7p">iPhone 7P</MenuItem>
-          <MenuItem value="iphone8">iPhone 8</MenuItem>
-          <MenuItem value="iphone8p">iPhone 8P</MenuItem>
-          <MenuItem value="iphonex">iPhone X</MenuItem>
-          <MenuItem value="iphonexr">iPhone XR</MenuItem>
-          <MenuItem value="iphonexs">iPhone XS</MenuItem>
-        </Select>
-      </div> */}
-
       <div className="field-line">
+        <form>
+          <label>
+            Phone
+            <select name="phone" value={user.phone}
+            onChange={onChange}>
+              <option value="iphone8">iPhone 8</option>
+              <option value="iphone8p">iPhone 8P</option>
+              <option value="iphonex">iPhone X</option>
+              <option value="iphonexr">iPhone XR</option>
+              <option value="iphonexs">iPhone XS</option>
+            </select>
+          </label>
+        </form>
+      
+      </div>
+
+      {/* <div className="field-line">
         <TextField
           floatingLabelText="Phone"
           type="text"
@@ -97,7 +85,7 @@ const SignUpForm = ({
           errorText={errors.phone}
           value={user.phone}
         />
-      </div>
+      </div> */}
 
       <div className="button-line">
         <RaisedButton type="submit" label="Create New Account" primary />

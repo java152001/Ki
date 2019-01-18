@@ -8,6 +8,11 @@ export default {
   // Gets the book with the given id
   getArticles: function() {
     return axios.get("/api/articles");
+  },
+  getComments: function() {
+    return axios.get("/api/comments");
+  },
+  saveComment: function(articleObj) {
+    return axios.post("/api/comments");
   }
-  
 };

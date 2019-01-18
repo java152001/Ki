@@ -6,7 +6,7 @@ import API from "../utils/API";
 
 const ArticleCard = ({ article }) => (
     <Card className="articleCard">
-        <CardTitle title={article.title} key={key} data-id={article._id}/>
+        <CardTitle title={article.title} data-id={article._id}/>
         <CardActions>
             <Button size="small" color="primary" onClick={(
                 function() {
