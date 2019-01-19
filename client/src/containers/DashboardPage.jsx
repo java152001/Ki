@@ -57,11 +57,10 @@ class DashboardPage extends React.Component {
           handleBtnClick={this.handleBtnClick}
           imageurl={'./images/background_dashboard.jpg'}
         />
-        <GridList container cols={3} spacing={24} padding={20}>
+        <GridList container cols={3} spacing={24} padding={50}>
           {this.state.showArticles
             ? this.state.articles.map((article, i) => (
-                <div>
-                  <GridListTile wrap cols={1}>
+                  <GridListTile wrap cols={1} rows={2}>
                     <DialogExampleSimple
                       key={i}
                       titleId={i}
@@ -70,7 +69,6 @@ class DashboardPage extends React.Component {
                       user={this.state.user}
                     />
                   </GridListTile>
-                </div>
               ))
             : false}
         </GridList>
