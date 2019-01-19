@@ -5,6 +5,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import ArticleCard from '../components/ArticleCard.jsx';
 import TextField from 'material-ui/TextField'
 import API from "../utils/API.js"
+import Grid from "@material-ui/core/Grid";
 
 class DialogExampleSimple extends React.Component {
 
@@ -135,7 +136,7 @@ componentDidMount() {
     return (
       <div>
         <div onClick={this.handleOpen}>
-        <ArticleCard article={this.props.article} label="Dialog"/>
+        <ArticleCard article={this.props.article} key={this.props.titleId} titleId={this.props.titleId + 1} label="Dialog"/>
         </div>
         <Dialog
           title={this.props.article.title}
