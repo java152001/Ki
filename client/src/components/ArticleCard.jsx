@@ -15,7 +15,7 @@ const ArticleCard = ({ key, article, titleId }) => (
       data-id={article._id}
     />
     <CardActions>
-      <Button
+      <Button className="btn btn-primary"
         size="small"
         color="primary"
         onClick={function() {
@@ -27,5 +27,4 @@ const ArticleCard = ({ key, article, titleId }) => (
     </CardActions>
   </Card>
 );
-
 export default ArticleCard;

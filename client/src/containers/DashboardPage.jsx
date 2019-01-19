@@ -7,6 +7,8 @@ import axios from "axios";
 import { withStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
+import GridListTile from "@material-ui/core/GridListTile";
+import GridList from "@material-ui/core/GridList";
 
 axios.defaults.headers.common["Authorization"] = `Bearer ${Auth.getToken()}`;
 
@@ -54,22 +56,22 @@ class DashboardPage extends React.Component {
           user={this.state.user}
           handleBtnClick={this.handleBtnClick}
         />
-        {this.state.showArticles
-          ? this.state.articles.map((article, i) => (
-              <div>
-                <Grid container spacing={24}>
-                  <Grid item xs>
+        <GridList container cols={3} spacing={24} padding={20}>
+          {this.state.showArticles
+            ? this.state.articles.map((article, i) => (
+                <div>
+                  <GridListTile wrap cols={1}>
                     <DialogExampleSimple
                       key={i}
                       titleId={i}
                       article={article}
                       data-id={article}
                     />
-                  </Grid>
-                </Grid>
-              </div>
-            ))
-          : false}
+                  </GridListTile>
+                </div>
+              ))
+            : false}
+        </GridList>
       </div>
     );
   }
