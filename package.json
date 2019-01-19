@@ -6,7 +6,7 @@
   "scripts": {
     "start-server": "nodemon --use_strict index.js",
     "start-client": "webpack",
-    "start": "yarn start-client && yarn start-server"
+    "start": "npm server.js"
   },
   "author": "",
   "license": "ISC",
