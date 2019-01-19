@@ -62,7 +62,7 @@ class DashboardPage extends React.Component {
 
     return (
       <div>
-        <Dashboard secretData={this.state.secretData} user={this.state.user} handleBtnClick={this.handleBtnClick} />
+        <Dashboard secretData={this.state.secretData} user={this.state.user} handleBtnClick={this.handleBtnClick} imageurl={'./images/background_dashboard.jpg'} />
         {this.state.showArticles ?
           this.state.articles.map((article, i) =>
           <div>

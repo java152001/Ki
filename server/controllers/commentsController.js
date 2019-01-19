@@ -4,10 +4,14 @@ const Article = require("../models/article");
 // Defining methods for the CommentsController
 module.exports = {
   findAll: function (req, res) {
+    console.log(req.query)
     Comment
-      .find(req.query)
+      .find({ article: req.query.params})
       .sort({ date: -1 })
-      .then(dbModel => res.json(dbModel))
+      .then(function(dbModel) {
+        res.json(dbModel)
+        console.log(dbModel)
+      })
       .catch(err => res.status(422).json(err));
   },
   findById: function (req, res) {
