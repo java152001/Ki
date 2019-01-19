@@ -5,6 +5,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import ArticleCard from '../components/ArticleCard.jsx';
 import TextField from 'material-ui/TextField'
 import API from "../utils/API.js"
+import Grid from "@material-ui/core/Grid";
 
 class DialogExampleSimple extends React.Component {
 
