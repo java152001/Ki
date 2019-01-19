@@ -9,10 +9,10 @@ export default {
   getArticles: function() {
     return axios.get("/api/articles");
   },
-  getComments: function() {
-    return axios.get("/api/comments");
+  getComments: function(params) {
+    return axios.get("/api/comments?params=" + params);
   },
   saveComment: function(articleObj) {
-    return axios.post("/api/comments");
+    return axios.post("/api/comments", articleObj);
   }
 };

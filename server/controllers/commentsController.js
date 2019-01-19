@@ -1,13 +1,17 @@
-const Comment = require("mongoose").model('Comment');
-const Article = require("mongoose").model('Article');
+const Comment = require("../models/comment");
+const Article = require("../models/article");
 
 // Defining methods for the CommentsController
 module.exports = {
   findAll: function (req, res) {
+    console.log(req.query)
     Comment
-      .find(req.query)
+      .find({ article: req.query.params})
       .sort({ date: -1 })
-      .then(dbModel => res.json(dbModel))
+      .then(function(dbModel) {
+        res.json(dbModel)
+        console.log(dbModel)
+      })
       .catch(err => res.status(422).json(err));
   },
   findById: function (req, res) {
@@ -17,10 +21,11 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   create: function (req, res) {
+
     Comment
       .create(req.body)
       .then(function (dbModel) {
-        Article.findOneAndUpdate({ _id: dbModel.article },
+        Article.findOneAndUpdate({ _id: req.body.article._id },
           { $push: { comments: dbModel._id } }, { new: true })
           .then(function (finArticle) {
             res.json(finArticle)
