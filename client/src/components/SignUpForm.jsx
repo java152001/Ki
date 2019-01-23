@@ -63,6 +63,7 @@ const SignUpForm = ({
         <form>
           <label>
             Phone
+            <br />
             <select name="phone" value={user.phone}
             onChange={onChange}>
               <option value="iphone8">iPhone 8</option>
